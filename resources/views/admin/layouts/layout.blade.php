@@ -7,7 +7,7 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    @vite(['resources/css/adminlte.css', 'resources/js/adminlte.js'])
+    @vite(['resources/css/adminlte.css', 'resources/js/adminlte.js', 'resources/js/app.js'])
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -220,8 +220,7 @@
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-archive"></i>
-              <p>
-                Тег
+              <p>Тег
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -241,6 +240,29 @@
             </ul>
           </li>
 
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-archive"></i>
+              <p>Статьи
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('posts.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Список статей</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('posts.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Новая статья</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
