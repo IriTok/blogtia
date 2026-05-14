@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('content');
             $table->integer('category_id')->unsigned();
-            $table->integer('views')->unsignred()->default(0);
+            $table->integer('views')->unsigned()->default(0);
             $table->string('thumbnail')->nullable();
             $table->timestamps();
         });

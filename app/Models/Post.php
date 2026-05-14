@@ -12,7 +12,7 @@ class Post extends Model
     protected $fillable = ['title', 'description', 'content', 'category_id', 'thumbnail'];
     public function tags()
     {
-        return $this->belogsToMany(Tag::class)->withTimestamps();
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
     public function category()
@@ -27,5 +27,25 @@ class Post extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public static function uploadImage (Request $request, $image = null)
+    {
+        if ($request->hasFile('thumbnail')){
+            if ($image) {
+                Storage::delete($image);
+            }
+            $folder = date('Y-m-d');
+            return $request->file('thumbnail')->store("images/{$folder}");
+        }
+        return null;
+    }
+
+    public function getImage()
+    {
+        if (!$this->thumbnail) {
+            return asset("no-image.png");
+        }
+        return asset("uploads/{$this->thumbnail}");
     }
 }

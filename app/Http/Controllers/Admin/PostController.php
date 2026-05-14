@@ -35,10 +35,12 @@ class PostController extends Controller
 
         $data = $request->all();
 
-        if ($request->hasFile('thumbnail')) {
-            $folder = date('Y-m-d');
-            $data['thumbnail'] = $request->file('thumbnail')->store("images/{$folder}");
-        }
+        $data['thumbnail'] = Post::uploadImage($request);
+
+        // if ($request->hasFile('thumbnail')) {
+        //     $folder = date('Y-m-d');
+        //     $data['thumbnail'] = $request->file('thumbnail')->store("images/{$folder}");
+        // }
 
         $post = Post::create($data);
         $post->tags()->sync($request->tags);
@@ -63,9 +65,23 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'category_id' => 'required|integer',
+            'thumbnail' => 'nullable|image',
         ]);
 
-        dd($request->all());
+        $post = Post::find($id);
+        $data = $request->all();
+        $data['thumbnail'] = Post::uploadImage($request, $post->thimbnail);
+
+        // if ($request->hasFile('thumbnail')) {
+        //     $folder = date('Y-m-d');
+        //     $data['thumbnail'] = $request->file('thumbnail')->store("images/{$folder}");
+        // }
+
+        $post = Post::create($data);
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('posts.index')->with('success', 'Изменения сохранены');
     }
