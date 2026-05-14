@@ -67,7 +67,7 @@
                 </table>
             </div>
             @else
-            <p>Категорий пока нет...</p>
+            <p>Тегов пока нет...</p>
             @endif
         </div>
                 <div class="card-footer clearfix">

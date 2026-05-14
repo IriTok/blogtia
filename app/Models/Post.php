@@ -9,9 +9,10 @@ class Post extends Model
 {
     use Sluggable;
 
+    protected $fillable = ['title', 'description', 'content', 'category_id', 'thumbnail'];
     public function tags()
     {
-        return $this->belogsToMany(Tag::class);
+        return $this->belogsToMany(Tag::class)->withTimestamps();
     }
 
     public function category()

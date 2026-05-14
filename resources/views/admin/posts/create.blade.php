@@ -50,7 +50,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="title">Категории</label>
+                                    <label for="category_id">Категории</label>
                                     <select class="form-control" name="category_id" id="category_id">
                                       @foreach($categories as $k => $v)
                                         <option value="{{ $k }}">{{ $v }}</option>
@@ -59,20 +59,23 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="title">Теги</label>
+                                    <label for="tags">Теги</label>
                                     <select class="select2" name="tags[]" id="tags" multiple="multiple" data-placeholder="Выбор тегов" style="width:100%;">
                                       @foreach($tags as $k => $v)
                                         <option value="{{ $k }}">{{ $v }}</option>
                                       @endforeach
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-group">
-                                  <label for="title">Изображение</label>
-                                  <div class="custom-file">
-                                    <input type="file" name="thumbnail" class="custom-file-input" id="thumbnail">
-                                    <label class="custom-file-label" for="thumbnail">Выбрать файл</label>
-                                  </div> 
+                                  <label for="thumbnail">Изображение</label>
+                                  <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="thumbnail" class="custom-file-input" id="thumbnail">
+                                        <label class="custom-file-label" for="thumbnail">Выбрать файл</label>
+                                    </div>
+                                  </div>
+
                                 </div>
 
                             </div>
