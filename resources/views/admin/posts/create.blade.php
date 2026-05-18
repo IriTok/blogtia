@@ -31,7 +31,7 @@
                             <h3 class="cerd-title">Новая статья</h3>
                         </div>
 
-                        <form role="form" method="post" action="{{ route('posts.store') }}">
+                        <form role="form" method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">

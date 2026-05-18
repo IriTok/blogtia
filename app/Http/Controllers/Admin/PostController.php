@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -55,7 +56,10 @@ class PostController extends Controller
 
     public function edit(string $id)
     {
-        return view('admin.posts.edit');
+        $post = Post::find($id);
+        $categories = Category::pluck('title', 'id')->all();
+        $tags = Tag::pluck('title', 'id')->all();
+        return view('admin.posts.edit', compact('categories', 'tags', 'post'));
     }
 
     /**
@@ -73,7 +77,7 @@ class PostController extends Controller
 
         $post = Post::find($id);
         $data = $request->all();
-        $data['thumbnail'] = Post::uploadImage($request, $post->thimbnail);
+        $data['thumbnail'] = Post::uploadImage($request, $post->thumbnail);
 
         // if ($request->hasFile('thumbnail')) {
         //     $folder = date('Y-m-d');
@@ -88,7 +92,11 @@ class PostController extends Controller
 
     public function destroy(string $id)
     {
-        Tag::destroy($id);
-        return redirect()->route('posts.index')->with('succes', 'Статья удалена');
+        $post = Post::find($id);
+        $post->tags()->sync([]);
+        Storage::delete($post->thumbnail);
+        $post->delete();
+
+        return redirect()->route('posts.index')->with('success', 'Статья удалена');
     }
 }
