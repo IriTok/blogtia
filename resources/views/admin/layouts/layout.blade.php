@@ -7,7 +7,7 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    @vite(['resources/css/adminlte.css', 'resources/js/adminlte.js', 'resources/js/app.js'])
+  @vite(['resources/css/adminlte.css', 'resources/js/adminlte.js', 'resources/js/app.js'])
 
 </head>
 <body class="hold-transition sidebar-mini">
